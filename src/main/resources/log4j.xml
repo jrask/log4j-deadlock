@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE log4j:configuration SYSTEM "log4j.dtd">
+<log4j:configuration debug="true"
+                     xmlns:log4j='http://jakarta.apache.org/log4j/'>
+
+    <appender name="console" class="se.flapsdown.log4jdeadlock.MyAppender">
+        <layout class="org.apache.log4j.PatternLayout">
+            <param name="ConversionPattern"
+                   value="%d{yyyy-MM-dd HH:mm:ss} %t %-5p %c{1}:%L - %m%n" />
+        </layout>
+    </appender>
+
+    <appender name="async" class="se.flapsdown.log4jdeadlock.Buffer">
+        <appender-ref ref="console"/>
+    </appender>
+
+    <appender name="async2" class="org.apache.log4j.AsyncAppender">
+        <appender-ref ref="console"/>
+        <param name="BufferSize" value="500000"/>
+    </appender>
+
+    <root>
+        <level value="DEBUG" />
+        <appender-ref ref="async2" />
+    </root>
+
+</log4j:configuration>
