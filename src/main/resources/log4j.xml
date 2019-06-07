@@ -16,7 +16,8 @@
 
     <appender name="async2" class="org.apache.log4j.AsyncAppender">
         <appender-ref ref="console"/>
-        <param name="BufferSize" value="500000"/>
+        <param name="BufferSize" value="500"/>
+        <param name="Blocking" value="false"/>
     </appender>
 
     <root>
